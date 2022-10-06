@@ -40,25 +40,38 @@ export default {
     methods: {
         submit() {
             this.setLoadingBtn(true);
-
+            this.$axios
+                .post('http://localhost:8000/api/login', {
+                    email: this.email,
+                    password: this.password
+                })
+                .then(response => {
+                    console.log(response);
+                    if (response.data.success) {
+                        console.log('Login success');
+                        this.setLoadingBtn(false);
+                    } else {
+                        console.log('Login fail');
+                    }
+                })
             // Change to accessing API login
-            setTimeout(() => {
-                if (
-                    this.email == "brilianeranaomi@gmail.com" &&
-                    this.password == "123"
-                ) {
-                    console.log('Login success');
-                    this.setLoadingBtn(false);
-                } else {
-                    this.$swal({
-                        icon: 'error',
-                        title: 'Wrong email or password!',
-                        showConfirmButton: false,
-                        timer: 10000
-                    });
-                    this.setLoadingBtn(false);
-                }
-            }, 2000);
+            // setTimeout(() => {
+            //     if (
+            //         this.email == "brilianeranaomi@gmail.com" &&
+            //         this.password == "123"
+            //     ) {
+            //         console.log('Login success');
+            //         this.setLoadingBtn(false);
+            //     } else {
+            //         this.$swal({
+            //             icon: 'error',
+            //             title: 'Wrong email or password!',
+            //             showConfirmButton: false,
+            //             timer: 10000
+            //         });
+            //         this.setLoadingBtn(false);
+            //     }
+            // }, 2000);
         },
         setVisibleFormLogin() {
             this.showFormLogin = !this.showFormLogin;

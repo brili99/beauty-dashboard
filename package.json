@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.2",
+    "axios": "^1.0.0",
     "bootstrap": "^5.2.1",
     "jquery": "^3.6.1",
     "vue": "^3.2.38",
